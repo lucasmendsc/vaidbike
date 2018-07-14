@@ -6,5 +6,8 @@ target/
 .settings
 .classpath
 .recommenders
+<<<<<<< HEAD
 *.log
 /nbproject/
+=======
+>>>>>>> 3d9adda66f08402cd98203abe614695a90b115d0
