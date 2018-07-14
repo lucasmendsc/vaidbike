@@ -43,8 +43,7 @@ import java.util.List;
 public class TesteMain {
 
     public static void main(String args[]) throws Exception {
-
-
+/*
         Usuario u = new Usuario("MilenaCliente", "mirassica", "12345", "cpfnovo",
                "sexo", new Date(), end, "telefone", "email", bikes);
         Usuario u2 = new Usuario("MilenaCliente", "mirassica", "12345", "cpfnovo",
