@@ -41,15 +41,15 @@ public class Endereco implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_endereco")
     private Integer codigo;
-    @Column(length = 12, nullable = false)
+    @Column(length = 45, nullable = false)
     private String estado;
-    @Column(length = 20, nullable = false)
+    @Column(length = 45, nullable = false)
     private String cidade;
     @Column(length = 12)
     private String cep;
-    @Column(length = 17, nullable = false)
+    @Column(length = 20, nullable = false)
     private String bairro;
-    @Column(length = 25, nullable = false)
+    @Column(length = 45, nullable = false)
     private String logradouro;
 
     @Deprecated
@@ -65,28 +65,52 @@ public class Endereco implements Serializable {
         this.logradouro = logradouro;
     }
 
-    public int getCodigo() {
+    public Integer getCodigo() {
         return codigo;
+    }
+
+    public void setCodigo(Integer codigo) {
+        this.codigo = codigo;
     }
 
     public String getEstado() {
         return estado;
     }
 
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
     public String getCidade() {
         return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
     }
 
     public String getCep() {
         return cep;
     }
 
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+
     public String getBairro() {
         return bairro;
     }
 
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
     public String getLogradouro() {
         return logradouro;
+    }
+
+    public void setLogradouro(String logradouro) {
+        this.logradouro = logradouro;
     }
 
     @Override
@@ -98,7 +122,7 @@ public class Endereco implements Serializable {
         result = (HASH * result) + cidade.hashCode();
         result = (HASH * result) + ((cep == null) ? 0 : cep.hashCode());
         result = (HASH * result) + bairro.hashCode();
-        return result + logradouro.hashCode();
+        return result += logradouro.hashCode();
     }
 
     @Override

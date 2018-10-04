@@ -23,6 +23,7 @@ SOFTWARE.
  */
 package br.edu.ifpe.model.hibernate;
 
+import br.edu.ifpe.model.classes.Bike;
 import java.util.ArrayList;
 import java.util.List;
 import br.edu.ifpe.model.classes.Usuario;
@@ -59,9 +60,9 @@ public class UsuarioHibernate implements UsuarioDao {
     @Override
     public Usuario recuperar(String cpf) {
         Session session = this.SESSIONS.openSession();
-
+        Usuario usuario = null;
         try {
-            return (Usuario) session.createQuery("From Usuario where cpf = '"
+            usuario = (Usuario) session.createQuery("From Usuario where cpf = '"
                     + cpf + "'").list().get(0);
         } catch (Exception e) {
             LOGGER.error("Ocorreu um problema ao recuperar o Usuario por cpf"
@@ -69,6 +70,7 @@ public class UsuarioHibernate implements UsuarioDao {
             return null;
         } finally {
             session.close();
+            return usuario;
         }
     }
 
@@ -79,7 +81,7 @@ public class UsuarioHibernate implements UsuarioDao {
 
         try {
             usuario = (Usuario) session.createQuery(
-                    "From Usuario where login = '" + login
+                    "From Usuario where email= '" + login
                     + "' and senha = '" + senha + "'").list().get(0);
         } catch (Exception e) {
             LOGGER.error("Ocorreu um problema ao recuperar o Usuario por login"
@@ -169,6 +171,22 @@ public class UsuarioHibernate implements UsuarioDao {
         } finally {
             session.close();
             return usuarios;
+        }
+    }
+
+    @Override
+    public List<Bike> listarTodasAsBikes(Usuario usuario) {
+        Session session = this.SESSIONS.openSession();
+        List<Bike> bikes = new ArrayList();
+
+        try {
+            bikes = session.createQuery("from bike Where cod_usuario = " + usuario.getCodigo()).list();
+        } catch (Exception e) {
+            LOGGER.error("Ocorreu um problema ao recuperar todos os Usuarios "
+                    + "\n" + e.getMessage());
+        } finally {
+            session.close();
+            return bikes;
         }
     }
 

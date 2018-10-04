@@ -1,7 +1,7 @@
 /*MIT License
 
 Copyright (c) 2018 Milena dos Santos Macedo, Carlos André Cordeiro da Silva,
-Adrielly Calado Sales, Lucas Mendes Cavalcanti.
+Adrielly Calado Sales, Lucas Mendes Cavalcanti. 
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -20,22 +20,17 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
- */
-package br.edu.ifpe.model.interfacesDao;
+*/
+/* 
+    Created on : 10/08/2018, 22:37:26
+    Author     : Milena
+*/
 
-import br.edu.ifpe.model.classes.Bike;
-import br.edu.ifpe.model.classes.Usuario;
-import java.util.List;
-
-/**
- *
- * @author Milena Macedo <milenasantosmcd@gmail.com>
- */
-public interface UsuarioDao extends Dao<Usuario> {
-
-    public Usuario recuperar(String cpf);
-
-    public Usuario recuperar(String login, String senha);
+.no-border {
+    border-style: hidden !important;
     
-    List<Bike> listarTodasAsBikes(Usuario usuario);
+}
+
+.panelgrid tr, panelgrid td{
+    border: hidden !important;
 }

@@ -25,14 +25,12 @@ package br.edu.ifpe.view;
 
 import br.edu.ifpe.model.classes.Bike;
 import br.edu.ifpe.model.classes.Endereco;
-import br.edu.ifpe.model.classes.Locacao;
-import br.edu.ifpe.model.classes.Pagamento;
 import br.edu.ifpe.model.classes.Usuario;
 import br.edu.ifpe.model.hibernate.UsuarioHibernate;
-import br.edu.ifpe.model.validation.UsuarioModel;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -84,18 +82,11 @@ public class TesteMain {
             LocalDate.now(), ENDERECO, "telefone", "email", 
               bikes);
       
-      UsuarioHibernate.getInstance().inserir(usuario);
+    
       Usuario us = (Usuario) UsuarioHibernate.getInstance().recuperar("08558176400");
         System.out.println(us.getBikes().equals(bikes));
-
-        Endereco ENDERECO = new Endereco("estado", "cidade",
-                "cep", "bairro", "logradouro");
         
-        Usuario USUARIO1 = new Usuario(
-                "login", "senha", "nome", "28961303066", "sexo",
-                LocalDate.now(), ENDERECO, "telefone", "email",
-                new ArrayList<Bike>());
-        
+       
         Usuario USUARIO2 = new Usuario(
                 "login1", "senha1", "nome1", "28952871049", "sexo1",
                 LocalDate.now(), ENDERECO, "telefone1", "email1",
@@ -107,6 +98,23 @@ public class TesteMain {
          Pagamento pagamento = 
             new Pagamento("tipo", new BigDecimal("20.00"),LOCACAO);
          
+
+        UsuarioController uc = new UsuarioController();
+        uc.setEnd(ENDERECO);
+        uc.setCadUsuario(USUARIO1);
+        System.out.println(uc.getCadUsuario());
+        uc.registrarUsuario();
+     
+       
+       Usuario us = (Usuario) UsuarioHibernate.getInstance().recuperar("4", "aa6abe049e8d78001ead578c62426901");
+       UsuarioModel um = new UsuarioModel();
+       UsuarioController uc = new UsuarioController();
+       String us = uc.realizarLogin("4", "4");
+       System.out.println(us);*/
+        System.out.println(UsuarioHibernate.getInstance().listarTodasAsBikes(UsuarioHibernate.getInstance().recuperar("cpf")).toString());
+
+}
+
         UsuarioModel usuarioModel = new UsuarioModel();
         
         usuarioModel.inserir(USUARIO1);
@@ -115,4 +123,5 @@ public class TesteMain {
       */  
          
     }
+
 }

@@ -1,7 +1,7 @@
 /*MIT License
 
 Copyright (c) 2018 Milena dos Santos Macedo, Carlos André Cordeiro da Silva,
-Adrielly Calado Sales, Lucas Mendes Cavalcanti.
+Adrielly Calado Sales, Lucas Mendes Cavalcanti. 
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -20,22 +20,36 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
- */
-package br.edu.ifpe.model.interfacesDao;
+*/
 
-import br.edu.ifpe.model.classes.Bike;
-import br.edu.ifpe.model.classes.Usuario;
-import java.util.List;
+package br.edu.ifpe.controller;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.convert.Converter;
+import javax.faces.convert.FacesConverter;
 
 /**
  *
  * @author Milena Macedo <milenasantosmcd@gmail.com>
  */
-public interface UsuarioDao extends Dao<Usuario> {
+@FacesConverter(value="localDateConverter")
+public class FacesConvertLocalDate implements Converter{
 
-    public Usuario recuperar(String cpf);
+    @Override
+    public Object getAsObject(FacesContext context, UIComponent component, String value) {
+       Locale BRAZIL = new Locale("pt", "BR");
+        return LocalDate.parse(value, DateTimeFormatter.ofPattern("dd/MM/yyyy").withLocale(BRAZIL));
+    }
 
-    public Usuario recuperar(String login, String senha);
-    
-    List<Bike> listarTodasAsBikes(Usuario usuario);
+    @Override
+    public String getAsString(FacesContext context, UIComponent component, Object value) {
+       LocalDate dateValue = (LocalDate) value;
+
+        return dateValue.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+ }
+
 }

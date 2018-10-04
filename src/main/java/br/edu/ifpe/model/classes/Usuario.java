@@ -48,27 +48,21 @@ public class Usuario implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_usuario")
     private Integer codigo;
-    @Column(length = 15, nullable = false, unique = true)
-    private String login;
-    @Column(length = 12, nullable = false)
+    @Column(nullable = false)
     private String senha;
-    @Column(length = 20, nullable = false)
+    @Column(length = 45, nullable = false)
     private String nome;
-
-    @Column(length = 15, nullable = true, unique = false)
-
+    @Column(length = 20, nullable = false, unique = true)
     private String cpf;
-    @Column(length = 5, nullable = true)
+    @Column(length = 15, nullable = false)
     private String sexo;
     private LocalDate dataNasc;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cod_endereco", nullable = false)
     private Endereco endereco;
-
-    @Column(length = 15, unique = false, nullable = true)
+    @Column(length = 20, unique = true, nullable = true)
     private String telefone;
-    @Column(length = 20, unique = false, nullable = true)
-
+    @Column(length = 45, unique = true, nullable = true)
     private String email;
     @OneToMany(targetEntity = Bike.class,
             fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -79,10 +73,9 @@ public class Usuario implements Serializable {
 
     }
 
-    public Usuario(String login, String senha, String nome, String cpf,
+    public Usuario(String senha, String nome, String cpf,
             String sexo, LocalDate dataNasc, Endereco endereco, String telefone,
             String email, List<Bike> bikes) {
-        this.login = login;
         this.senha = senha;
         this.nome = nome;
         this.cpf = cpf;
@@ -94,16 +87,12 @@ public class Usuario implements Serializable {
         this.bikes = bikes;
     }
 
-    public int getCodigo() {
+    public Integer getCodigo() {
         return codigo;
     }
 
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
+    public void setCodigo(Integer codigo) {
+        this.codigo = codigo;
     }
 
     public String getSenha() {
@@ -126,6 +115,10 @@ public class Usuario implements Serializable {
         return cpf;
     }
 
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
     public String getSexo() {
         return sexo;
     }
@@ -136,6 +129,10 @@ public class Usuario implements Serializable {
 
     public LocalDate getDataNasc() {
         return dataNasc;
+    }
+
+    public void setDataNasc(LocalDate dataNasc) {
+        this.dataNasc = dataNasc;
     }
 
     public Endereco getEndereco() {
@@ -169,13 +166,12 @@ public class Usuario implements Serializable {
     public void setBikes(List<Bike> bikes) {
         this.bikes = bikes;
     }
-
+   
     @Override
     public int hashCode() {
         final int HASH = 13;
         int result = 1;
         result = (HASH * result) + codigo.hashCode();
-        result = (HASH * result) + login.hashCode();
         result = (HASH * result) + senha.hashCode();
         result = (HASH * result) + nome.hashCode();
         result = (HASH * result) + cpf.hashCode();
@@ -189,11 +185,7 @@ public class Usuario implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof Usuario)) {
-            return false;
-        }
-
-        if (!((Usuario) obj).login.equals(this.login)) 
+        if (!(obj instanceof Usuario)) 
             return false;
 
         if (!((Usuario) obj).senha.equals(this.senha))
@@ -222,7 +214,7 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "Usuario{" + "codigo=" + codigo + ", login=" + login + ", senha="
+        return "Usuario{" + "codigo=" + codigo + ", senha="
                 + senha + ", nome=" + nome + ", cpf=" + cpf + ", sexo=" + sexo
                 + ", dataNasc=" + dataNasc + ", endereco=" + endereco
                 + ", telefone=" + telefone + ", email=" + email + ", bikes="
