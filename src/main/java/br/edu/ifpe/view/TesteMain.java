@@ -85,9 +85,6 @@ public class TesteMain {
     
       Usuario us = (Usuario) UsuarioHibernate.getInstance().recuperar("08558176400");
         System.out.println(us.getBikes().equals(bikes));
-         */
- /* 
-        
         
        
         Usuario USUARIO2 = new Usuario(
@@ -117,4 +114,14 @@ public class TesteMain {
         System.out.println(UsuarioHibernate.getInstance().listarTodasAsBikes(UsuarioHibernate.getInstance().recuperar("cpf")).toString());
 
 }
+
+        UsuarioModel usuarioModel = new UsuarioModel();
+        
+        usuarioModel.inserir(USUARIO1);
+        
+        System.out.println(usuarioModel.recuperar(1));
+      */  
+         
+    }
+
 }
