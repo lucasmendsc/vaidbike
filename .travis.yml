@@ -17,5 +17,6 @@ addons:
       - postgresql-client-9.3
 before_script:
   - psql -c 'create database VaidBike;' -U postgres
+  - psql -U postgres -c "ALTER USER postgres WITH PASSWORD 'ifpe';"
 jdk:
   - oraclejdk8
