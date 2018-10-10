@@ -16,6 +16,7 @@ addons:
       - postgresql-9.3
       - postgresql-client-9.3
 before_script:
-  - "cp ./.travis.database.yml ./config/database.yml"
+   - psql -U postgres -c "ALTER USER postgres WITH PASSWORD 'ifpe';"
+   - psql -c 'create database VaidBike;' -U postgres
 jdk:
   - oraclejdk8
