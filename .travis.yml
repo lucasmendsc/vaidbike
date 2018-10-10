@@ -19,6 +19,6 @@ env:
   global:
   - PGPORT=5432
 before_script:
-   - psql -c 'create database VaidBike;' -U postgres
+   - psql -c 'create database travis_ci_test;' -U postgres
 jdk:
   - oraclejdk8
