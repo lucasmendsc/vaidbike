@@ -18,6 +18,7 @@ before_install:
   - sudo cp /etc/postgresql/{9.6,10}/main/pg_hba.conf
   - sudo service postgresql restart
 before_script:
+  - psql -U postgres -c "ALTER USER postgres WITH PASSWORD 'ifpe';"
   - psql -U postgres -c "CREATE DATABASE VaidBike;"
 jdk:
   - oraclejdk8
