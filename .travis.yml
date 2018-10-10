@@ -17,7 +17,7 @@ addons:
       - postgresql-client-9.3
 env:
   global:
-  - PGPORT=5435
+  - PGPORT=5432
 before_script:
    - psql -c 'create database VaidBike;' -U postgres
 jdk:
