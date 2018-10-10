@@ -110,7 +110,7 @@ public class TesteMain {
        UsuarioModel um = new UsuarioModel();
        UsuarioController uc = new UsuarioController();
        String us = uc.realizarLogin("4", "4");
-       System.out.println(us);*/
+       System.out.println(us);
         System.out.println(UsuarioHibernate.getInstance().listarTodasAsBikes(UsuarioHibernate.getInstance().recuperar("cpf")).toString());
 
 }
