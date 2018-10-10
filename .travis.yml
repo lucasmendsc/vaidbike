@@ -19,7 +19,6 @@ env:
   global:
   - PGPORT=5433
 before_script:
-   - psql -U postgres -c "ALTER USER postgres WITH PASSWORD 'ifpe';
    - psql -c 'create database VaidBike;' -U postgres
 jdk:
   - oraclejdk8
