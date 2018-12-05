@@ -7,10 +7,17 @@ services:
     - postgresql
 addons:
   postgresql: "9.4"
+  addons:
+  postgresql: "9.4"
+  apt:
+    packages:
+    - postgresql-9.4
+    - postgresql-client-9.4
+    - postgresql-server-dev-9.4
 before_install:
   # Use default port
   - sudo sed -i 's/port = 5433/port = 5432/' /etc/postgresql/9.4/main/postgresql.conf
 before_script:
-  - psql -U postgres -c "CREATE DATABASE VaidBike;"
+  - psql -c 'create database VaidBike;' -U postgres
 jdk:
   - oraclejdk8
