@@ -6,19 +6,11 @@ cache:
 services:
     - postgresql
 addons:
-  postgresql: "10"
-  apt:
-    packages:
-      - postgresql-10
-      - postgresql-client-10
+  postgresql: "9.4"
 before_install:
   # Use default port
-  - sudo sed -i 's/port = 5433/port = 5432/' /etc/postgresql/10/main/postgresql.conf
-  # Use 9.6 auth config
-  - sudo cp /etc/postgresql/{9.6,10}/main/pg_hba.conf
-  - sudo service postgresql restart
+  - sudo sed -i 's/port = 5433/port = 5432/' /etc/postgresql/9.4/main/postgresql.conf
 before_script:
-  - psql -U postgres -c "ALTER USER postgres WITH PASSWORD 'ifpe';"
   - psql -U postgres -c "CREATE DATABASE VaidBike;"
 jdk:
   - oraclejdk8
