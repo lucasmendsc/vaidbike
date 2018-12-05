@@ -18,6 +18,6 @@ before_install:
   # Use default port
   - sudo sed -i 's/port = 5433/port = 5432/' /etc/postgresql/9.4/main/postgresql.conf
 before_script:
-  - psql -c 'create database VaidBike;' -U postgres
+  - psql -c 'create database VaidBike' -U postgres
 jdk:
   - oraclejdk8
